@@ -1,29 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app" dark>
+    <Navigation/>
+    <v-content> 
+        <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Navigation from './components/Navigation';
+  export default {
+    components: {
+    Navigation,
+  },
+    name: 'App',
+    props: {
+      source: String,
+    },
+    data: () => ({
+      drawer: null,
+    }),
   }
+</script>
+<style lang="scss">
+  main {
+    background-image: url('./assets/RustBG.jpeg');
+      background-size: cover;
+      background-position: center;
+  }
+  .col h1 {
+  @include infobox_mixin(
+    5px,
+    map-get($colorz, white),
+    10px,
+    5px,
+    map-get($colorz, white)
+  );
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 16px;
+  text-align: right;
+}
+.col:last-child h1 {
+  text-align: left;
+}
+#info {
+  background-color: white;
 }
 </style>
